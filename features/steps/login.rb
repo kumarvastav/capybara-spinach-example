@@ -1,11 +1,18 @@
 include Capybara::RSpecMatchers
 include Capybara::RackTest
+require_relative '../../features/support/env'
 
 class Spinach::Features::Login < Spinach::FeatureSteps
 
   When 'I visit the page' do
+    Environment.new.enableChrome
     visit "https://mail.google.com"
   end
+
+  # And "^I should be able to enter valid \"([^\"]*)\"$"  do |username|
+  #   fill_in("Email", with => username)
+  #   click_on "Next"
+  # end
 
   And "I should be able to enter valid username" do
     fill_in("Email", with: "kumar.vastav")

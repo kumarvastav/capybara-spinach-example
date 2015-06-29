@@ -9,7 +9,72 @@ require 'minitest/spec'
 require 'uri'
 require_relative '../../features/pages/homepage'
 require_relative '../../features/pages/searchResults'
-# require_relative '../../spinach/capybara'
+
+
+class Environment
+
+  def enableFirefox()
+
+    Capybara.register_driver :firefox do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :firefox)
+    end
+
+    Capybara.default_driver = :selenium
+
+    # @USERS = YAML.load '../../features/support/user.yml'
+    # printf(@USERS)
+
+  end
+
+  def enableChrome()
+
+    Capybara.register_driver :chrome do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :chrome)
+    end
+
+    Capybara.default_driver = :chrome
+
+  end
+
+  def enableSafari()
+
+    Capybara.register_driver :safari do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :safari)
+    end
+
+    Capybara.default_driver = :safari
+
+  end
+
+  def enableHeadless()
+
+    Capybara.register_driver :selenium do |app|
+      Capybara::Selenium::Driver.new(app, :browser => :selenium)
+    end
+
+    Capybara.javascript_driver = :webkit
+
+  end
+
+end
+
+# Capybara.register_driver :safari do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :safari)
+# end
+#
+# Capybara.default_driver = :safari
+
+# Capybara.register_driver :firefox do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :firefox)
+# end
+#
+# Capybara.default_driver = :selenium
+
+# Capybara.register_driver :chrome do |app|
+#   Capybara::Selenium::Driver.new(app, :browser => :chrome)
+# end
+#
+# Capybara.default_driver = :chrome
 
 
 #Tell FireFox to use proxy settings
@@ -34,9 +99,3 @@ require_relative '../../features/pages/searchResults'
 # end
 #
 #  Capybara.default_driver = :selenium
-
-Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
-
-Capybara.default_driver = :selenium

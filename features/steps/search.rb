@@ -2,7 +2,9 @@
 class Spinach::Features::Search < Spinach::FeatureSteps
 
   When "I visit the page" do
-    visit "https://google.com"
+    @homepage = Homepage.new
+    @homepage.usr_launchApp "https://google.com"
+    # visit "https://google.com"
   end
 
   And "I enter the search keyword" do
